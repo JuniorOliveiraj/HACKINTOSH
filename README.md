@@ -15,7 +15,7 @@
 ## Introdução
 Este guia detalha como configurar um Hackintosh com macOS Big Sur em um sistema baseado em AMD Ryzen. O processo envolve criar um instalador USB, configurar o bootloader OpenCore e realizar ajustes pós-instalação.
 
-![Hackintosh Setup](https://user-images.githubusercontent.com/your-username/hackintosh-setup.png)
+![Hackintosh Setup](https://github.com/JuniorOliveiraj/HACKINTOSH/blob/FRONT-END/sobre%20o%20Mac.png?raw=true)
 
 ## Especificações do Hardware
 
@@ -34,7 +34,7 @@ Este guia detalha como configurar um Hackintosh com macOS Big Sur em um sistema 
 - **Placa de rede**: Intel Dual Band Wireless-AC 7260
   - Wi-Fi e Bluetooth
 
-![Hardware](https://user-images.githubusercontent.com/your-username/hardware.png)
+![Hardware](https://github.com/JuniorOliveiraj/HACKINTOSH/blob/FRONT-END/config%20Mac.png?raw=true)
 
 ## Pré-requisitos
 
