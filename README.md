@@ -77,6 +77,7 @@
 - [x] CPU pelo [AMD-Vanilla](https://github.com/AMD-OSX/AMD_Vanilla)
 - [x] Áudio pelo [AppleALC](https://github.com/acidanthera/AppleALC)
 - [x] Ethernet pelo RealtekRTL8111
+- [x] Ethernet Intel® Dual Band Wireless-AC 8265
 - [x] dGPU pelo [WhateverGreen](https://github.com/Acidanthera/WhateverGreen)
 - [x] iGPU pelo [NootedRed](https://github.com/NootInc/NootedRed)
 - [x] iServices & DRM
