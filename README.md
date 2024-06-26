@@ -1,131 +1,139 @@
-# Hackintosh com macOS Big Sur
+<p></p>
+<p align="center"><img src="https://i.imgur.com/HJnpvwQ.png" width="200" height="48"/> EFI</p>
+<p align="center">
+ <a href="https://www.apple.com/macos">
+  <img src="https://img.shields.io/badge/Ventura-13.5-informational.svg">
+ </a>
+ <a href="https://www.apple.com/macos">
+  <img src="https://img.shields.io/badge/Sonoma-14.0%20beta3-informational.svg">
+ </a>
+ <a href="https://github.com/acidanthera/OpenCorePkg">
+  <img src="https://img.shields.io/badge/OpenCore-0.9.4-informational.svg">
+ </a>
+ <a href="https://github.com/haxgun/Ryzentosh/blob/main/LICENSE">
+  <img src="https://img.shields.io/github/license/haxgun/Ryzentosh">
+ </a>
+</p>
+<h2></h2>
+Aviso
 
-## Sumário
-1. [Introdução](#introdução)
-2. [Especificações do Hardware](#especificações-do-hardware)
-3. [Pré-requisitos](#pré-requisitos)
-4. [Criação do Instalador USB](#criação-do-instalador-usb)
-5. [Configuração do OpenCore](#configuração-do-opencore)
-6. [Instalação do macOS Big Sur](#instalação-do-macos-big-sur)
-7. [Pós-Instalação](#pós-instalação)
-8. [Problemas Conhecidos](#problemas-conhecidos)
-9. [Conclusão](#conclusão)
-10. [Recursos e Créditos](#recursos-e-créditos)
+Use por sua conta e risco. Eu construí este EFI para mim e ele não garante 100% de funcionamento com o seu hardware.
 
-## Introdução
-Este guia detalha como configurar um Hackintosh com macOS Big Sur em um sistema baseado em AMD Ryzen. O processo envolve criar um instalador USB, configurar o bootloader OpenCore e realizar ajustes pós-instalação.
+As seções MLB, ROM, número de série e SystemUUID são especificamente deixadas vazias. Use GenSMBIOS para gerar SMBios.
 
-![Hackintosh Setup](https://github.com/JuniorOliveiraj/HACKINTOSH/blob/FRONT-END/sobre%20o%20Mac.png?raw=true)
+Eu recomendo usar um iMac20.1, se você estiver usando um iGPU. Caso contrário, use estes
 
-## Especificações do Hardware
+<h2 align="center">📺 Construir</h2>
+Componente	Modelo
+CPU	AMD Ryzen 5 5600X @ 4.2GHz
+Motherboard	MSI B450M PRO-VDH PLUS - BIOS Version 7A38v9E
+GPU	ASUS AMD Radeon RX 580 DUAL OC*
+RAM	ADATA XPG GAMMIX D20 2 x 8GB @ 3200 MHz
+OS disk	Team Group GX2 256GB
+Win disk	NVMe Apacer AS2280P4 256GB
+Other disk	WD Blue 1 TB
+macOS	Ventura 13.5 (22G74), Sonoma 14 beta 3 (23A5286i)
+OpenCore	0.9.4 Release
+Nota
+Em vez de dGPU, você pode usar iGPU no processador graças ao NootedRed, mas então você terá problemas com DRM, iServices e suspensão.
 
-### Componentes Principais:
-- **Processador (CPU)**: AMD Ryzen 5 5600G
-  - 6 núcleos / 12 threads
-  - Frequência base: 3.9 GHz
-  - Frequência de boost: até 4.4 GHz
-- **Placa-mãe**: B450M Aorus
-  - Chipset: AMD B450
-  - BIOS: Atualização recomendada para compatibilidade com Hackintosh
-- **Memória RAM**: 16GB DDR4 3200MHz
-- **Armazenamento**: SSD NVMe principal
-- **Placa de vídeo (GPU)**: Radeon RX 550 XT
-  - 4 GB GDDR5
-- **Placa de rede**: Intel Dual Band Wireless-AC 7260
-  - Wi-Fi e Bluetooth
+<h2 align="center">🔧 BIOS</h2>
+<details>
+    <summary><b>🔌 Configurações</b></summary>
+Componente	Modelo
+Inicialização rápida	Desativada
+Modo SVM	Ativado
+Acima de 4G Decodificação	Desativada
+BAR Redimensionável	Desativada
+Controlador de Gráficos Integrados	Automático
+IOMMU	Desativada
+Inicialização do Adaptador Gráfico	Gráficos Integrados (IGD)
+Tamanho do buffer de quadro UMA	Desativado*
+XHCI Hand-off	Ativado
+Modo de Inicialização	CSM
+Secure Boot e TPM	Desativados
+Nota
 
-![Hardware](https://github.com/JuniorOliveiraj/HACKINTOSH/blob/FRONT-END/config%20Mac.png?raw=true)
+*Se você usar iGPU, configure no mínimo 512 MB. Podem ocorrer artefatos em alguns PCs/notebooks se 512 MB de VRAM estiverem configurados. Para evitar isso, você precisa definir pelo menos 1 GB de VRAM.
 
-## Pré-requisitos
+</details>
+🏞️ Mais detalhes das minhas configurações podem ser encontrados aqui
 
-- **Sistema Operacional**: Um computador com macOS ou acesso a uma máquina virtual macOS para criar o instalador.
-- **Pendrive USB**: Com pelo menos 16GB de capacidade.
-- **Ferramentas de Software**:
-  - **OpenCore**: Bootloader para Hackintosh
-  - **GibMacOS**: Ferramenta para baixar o instalador do macOS
-  - **ProperTree**: Editor de configuração para arquivos `.plist`
-  - **GenSMBIOS**: Gerador de SMBIOS para emular a identidade do Mac
-  - **MountEFI**: Ferramenta para montar partições EFI
+⚠️ Você pode ler mais sobre as configurações da BIOS no guia
 
-## Criação do Instalador USB
+<h2 align="center">🩼 Funcional</h2>
+ macOS graças ao dortania
+ CPU pelo AMD-Vanilla
+ Áudio pelo AppleALC
+ Ethernet pelo RealtekRTL8111
+ dGPU pelo WhateverGreen
+ iGPU pelo NootedRed
+ iServices & DRM
+ Suspensão
+ Airdrop / Handoff (não há como verificar)
+Nota
 
-1. **Baixe o macOS Big Sur**:
-   - Use o **GibMacOS** para baixar o instalador do macOS Big Sur.
-   - Siga as instruções para criar o instalador em um pendrive USB.
+Se você usar iGPU: iServices não funcionará. Existem pequenos artefatos gráficos ao trabalhar com navegadores no motor Chromium. O desenvolvedor do NootedRed está ciente do problema. Um remendo está embutido no config, que reduz o número de artefatos gráficos.
 
-2. **Formatar o USB**:
-   - Utilize o **Disk Utility** para formatar o pendrive USB com o formato **Mac OS Extended (Journaled)** e esquema **GUID Partition Map**.
+<h2 align="center">🪚 Altere para você</h2>
+Edite o patch de contagem de núcleos para corresponder ao seu CPU
 
-3. **Criar o Instalador**:
-   - Execute o comando no Terminal para criar o instalador no pendrive USB:
-     ```bash
-     sudo /Applications/Install\ macOS\ Big\ Sur.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume
-     ```
+Veja AMD Vanilla OpenCore ou OpenCore-Install-Guide
 
-## Configuração do OpenCore
+<details>
+    <summary>Mini-Guia</summary>
+    Encontre os três `algrey - Force cpuid_cores_per_package`
+rust
+Copy code
+- `kernel -> Patch -> 0  -> Replace` para macOS 10.13.x, 10.14.x
+- `kernel -> Patch -> 1  -> Replace` para macOS 10.15.x, 11.x
+- `kernel -> Patch -> 2  -> Replace` para macOS 12.x, 13.0 a 13.2.1
+- `kernel -> Patch -> 3  -> Replace` para macOS 13.3
 
-1. **Baixe e Extraia o OpenCore**:
-   - Baixe a versão mais recente do OpenCore e extraia os arquivos.
+```
+B8000000 0000 => B8 <core count> 0000 0000
+BA000000 0000 => BA <core count> 0000 0000
+BA000000 0090 => BA <core count> 0000 0090
+BA000000 00 => BA <core count> 0000 00
+```
 
-2. **Configuração da EFI**:
-   - Monte a partição EFI do pendrive USB usando **MountEFI**.
-   - Copie a pasta **EFI** do OpenCore para a partição EFI do USB.
+| CoreCount | Hexadecimal |
+| --------- | ----------- |
+| 6 Núcleos | 06          |
+| 8 Núcleos | 08          |
+| 12 Núcleos | 0C         |
+| 16 Núcleos | 10         |
+| 32 Núcleos | 20         |
+| 64 Núcleos | 40         |
 
-3. **Configuração do OpenCore**:
-   - Edite o arquivo `config.plist` usando o **ProperTree**.
-   - Adicione suporte específico para processadores AMD.
-   - Configure drivers e kexts necessários:
-     - **VirtualSMC**: Emulação de sensores do sistema.
-     - **Lilu**: Base para várias extensões de kernel.
-     - **WhateverGreen**: Suporte gráfico.
-     - **AppleALC**: Suporte de áudio.
-     - **USBInjectAll**: Suporte para portas USB.
-     - **IntelMausi**: Suporte para rede.
-     - **AirportItlwm**: Kext para suporte à placa Wi-Fi Intel 7260.
+Por exemplo, o 5600G tem 6 núcleos
 
-4. **SMBIOS**:
-   - Gere um SMBIOS com **GenSMBIOS** que seja compatível com o modelo **iMacPro1,1**.
+```
+B8 06 00000000
+BA 06 00000000
+BA 06 00000090
+BA 06 000000
+```
+</details>
+<h2 align="center">🔧 Ferramentas</h2>
+Hackintool
+OpenCore Configurator
+CPU Name
+About This Hack
+<h2 align="center">🧱 Scripts</h2>
+Aviso
 
-![OpenCore Setup](https://user-images.githubusercontent.com/your-username/opencore-setup.png)
+Todos os scripts devem ser usados com direitos elevados! Para fazer isso, use
+sudo bash <nome_script>.sh
 
-## Instalação do macOS Big Sur
-
-1. **Inicialize a partir do USB**:
-   - Insira o pendrive USB e reinicie o computador.
-   - Acesse a BIOS e configure para inicializar a partir do USB.
-   - Selecione o instalador do macOS no menu do OpenCore.
-
-2. **Instalação**:
-   - Siga as etapas do instalador para instalar o macOS Big Sur no SSD NVMe.
-
-## Pós-Instalação
-
-1. **Configuração de EFI no SSD**:
-   - Monte a partição EFI do SSD.
-   - Copie a pasta **EFI** do pendrive USB para a partição EFI do SSD.
-
-2. **Kexts e Patches**:
-   - Instale todos os kexts adicionais e aplique patches específicos para estabilidade e funcionalidade.
-
-3. **Configuração do Sistema**:
-   - Ajuste configurações como resolução da tela, som e conectividade de rede.
-   - Verifique se todos os componentes estão funcionando corretamente.
-
-## Problemas Conhecidos
-
-- **Gráficos Integrados**: Os gráficos Vega integrados do Ryzen 5 5600G não são suportados pelo macOS, então é necessário usar a Radeon RX 550 XT como GPU principal.
-- **Conectividade Wi-Fi/Bluetooth**: A placa de rede Intel 7260 pode precisar de kexts específicos para funcionar corretamente com Wi-Fi e Bluetooth.
-
-## Conclusão
-Este guia cobre os passos essenciais para configurar um Hackintosh usando o macOS Big Sur em um sistema AMD Ryzen com a placa-mãe B450M Aorus. Embora a configuração inicial possa ser complexa, seguir os passos e usar as ferramentas adequadas facilita bastante o processo.
-
-## Recursos e Créditos
-- **[OpenCore](https://dortania.github.io/OpenCore-Install-Guide/)**: Guia oficial de instalação do OpenCore.
-- **[GibMacOS](https://github.com/corpnewt/gibMacOS)**: Ferramenta para baixar o instalador do macOS.
-- **[ProperTree](https://github.com/corpnewt/ProperTree)**: Editor de configuração para arquivos `.plist`.
-- **[GenSMBIOS](https://github.com/corpnewt/GenSMBIOS)**: Ferramenta para gerar SMBIOS compatíveis.
-- **[Hackintosh Forum](https://www.tonymacx86.com/)**: Comunidade com suporte e guias detalhados.
-
----
-
-Se precisar de mais informações ou ajustes no README, é só avisar!
+hostname.sh - altera o nome do seu computador ou hostname local no Mac
+clear-network-interfaces.sh - ajuda a resolver problemas com ethernet en0
+<h2 align="center">💡 Dicas</h2>
+Se você quiser mudar o nome do processador, use este
+Se você tiver uma configuração de CPU e placa-mãe 1-em-1 como a minha, você pode usar este config. Se for diferente, aconselho a montá-lo você mesmo de acordo com o guia. Dessa forma, você gastará menos tempo resolvendo problemas e tudo funcionará bem. 🫡
+<h2 align="center">🏞️ Screenshot</h2>
+<img src="https://i.imgur.com/qBf9Km2.png" alt="macOS Ventura">
+<br/>
+<img src="https://i.imgur.com/fpN7SS7.png" alt="macOS Ventura">
+<br/>
+<img src="https://i.imgur.com/y12giX0.png" alt="macOS Ventura">
