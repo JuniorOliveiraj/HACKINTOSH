@@ -151,12 +151,12 @@ Veja [AMD Vanilla OpenCore](https://github.com/AMD-OSX/AMD_Vanilla/tree/master) 
  2. Se você tiver uma configuração de CPU e placa-mãe 1-em-1 como a minha, você pode usar este config. Se for diferente, aconselho a montá-lo você mesmo de acordo com [o guia](https://dortania.github.io/OpenCore-Install-Guide/). Dessa forma, você gastará menos tempo resolvendo problemas e tudo funcionará bem. 🫡
 
 <h2 align="center">🏞️ Screenshot</h2>
-<img src="https://i.imgur.com/qBf9Km2.png" alt="macOS Ventura">
+<img src="https://raw.githubusercontent.com/JuniorOliveiraj/HACKINTOSH/FRONT-END/imagens/Captura%20de%20Tela%202024-06-26%20%C3%A0s%2013.39.02.png" alt="macOS Ventura">
 
 <br/>
 
-<img src="https://i.imgur.com/fpN7SS7.png" alt="macOS Ventura">
+<img src="https://raw.githubusercontent.com/JuniorOliveiraj/HACKINTOSH/FRONT-END/imagens/Captura%20de%20Tela%202024-06-26%20%C3%A0s%2013.42.00.png" alt="macOS Ventura">
 
 <br/>
 
-<img src="https://i.imgur.com/y12giX0.png" alt
+<img src="https://github.com/JuniorOliveiraj/HACKINTOSH/blob/FRONT-END/imagens/Captura%20de%20Tela%202024-06-26%20%C3%A0s%2013.44.37.png?raw=true" alt="Video 4K">
