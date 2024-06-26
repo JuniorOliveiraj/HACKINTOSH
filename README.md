@@ -32,9 +32,9 @@
 | CPU         | AMD Ryzen 5 5600G @ 4.2GHz                                      |
 | Motherboard | aorus elite B450M  - BIOS Version 7A38v9E                   |
 | GPU         | ASUS AMD Radeon RX 550 DUAL OC*                                 |
-| RAM         | ADATA XPG GAMMIX D20 2 x 8GB @ 3200 MHz                         |
+| RAM         | Kingston Fury Beast 2 x 8GB @ 3600 MHz                         |
 | OS disk     | Team Group GX2 256GB                                            |
-| Win disk    | NVMe Apacer AS2280P4 256GB                                      |
+| Win disk    | NVMe Apacer AS2280P4 500GB                                      |
 | Other disk  | WD Blue 1 TB                                                    |
 | macOS       | Ventura 13.5 (22G74), Sonoma 14 beta 3 (23A5286i)               |
 | OpenCore    | 0.9.4 Release                                                   |
