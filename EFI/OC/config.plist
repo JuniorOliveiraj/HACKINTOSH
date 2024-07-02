@@ -1440,7 +1440,7 @@
 				<key>SystemAudioVolume</key>
 				<data>Rg==</data>
 				<key>boot-args</key>
-				<string>debug=0x100 npci=0x3000 keepsyms=1 revcpu=1 alcid=20 unfairgva=1</string>
+				<string>debug=0x100 npci=0x3000 keepsyms=1 revcpu=1 alcid=20 unfairgva=1 revpatch=sbvmn -radcodec </string>
 				<key>csr-active-config</key>
 				<data>/w8AAA==</data>
 				<key>prev-lang:kbd</key>
@@ -1513,7 +1513,7 @@
 			<key>MaxBIOSVersion</key>
 			<false/>
 			<key>MLB</key>
-			<string>xxxxxxxxxxx</string>
+			<string>F5K016500J9K3F71M</string>
 			<key>ProcessorType</key>
 			<integer>1537</integer>
 			<key>ROM</key>
@@ -1525,9 +1525,9 @@
 			<key>SystemProductName</key>
 			<string>MacPro7,1</string>
 			<key>SystemSerialNumber</key>
-			<string>xxxxxxxxxxxxx</string>
+			<string>F5KCL6ZFP7QM</string>
 			<key>SystemUUID</key>
-			<string>xxxxx-xxxx-xxxxx-xxxxx</string>
+			<string>EB8981AA-3E66-4686-84CA-3680C8901DD5</string>
 		</dict>
 		<key>UpdateDataHub</key>
 		<true/>
